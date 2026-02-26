@@ -1,54 +1,113 @@
-# Constraint-Weighted Growth: Tunable Scaling in Directed Networks
+Constraint-Weighted Growth
+Monotone Scaling Modulation and Nonlinear Transport Suppression
 
-This repository contains the full simulation code accompanying the paper:
+This repository contains the simulation code accompanying the manuscript:
 
-**Kouvidis (2026)**  
-Constraint-Weighted Growth as a Mechanism for Tunable Scaling Regimes in Directed Networks.
+Constraint-Weighted Growth Induces Monotone Scaling Modulation and Nonlinear Transport Suppression: A Structural Mechanism in Directed Stochastic Growth
+Georgios Kouvidis (2026)
 
-## Overview
+The repository provides two primary computational artifacts corresponding to the empirical and illustrative components of the paper.
 
-We study a directed acyclic graph (DAG) growth model where candidate extensions are selected using a softmax kernel penalizing increases in normalized structural heterogeneity:
+Repository Structure
+constraint-weighted-growth/
+│
+├── README.md
+├── requirements.txt
+└── notebooks/
+    ├── 01_growth_scaling.ipynb
+    └── 02_transport_surrogate.ipynb
+1. Growth Scaling Simulation
 
-P_lambda(e | G) ∝ exp( -lambda * ΔΦ )
+Notebook: 01_growth_scaling.ipynb
 
-The model demonstrates continuous exponent modulation of the form:
+This notebook generates the primary empirical results reported in Section 3 of the manuscript.
 
-Φ(t) ~ t^α(lambda)
+It implements:
 
-with α decreasing monotonically as lambda increases.
+Directed acyclic graph (DAG) growth
 
-## Files
+Admissible extension generation
 
-- `constraint_weighted_growth.ipynb` — Full simulation notebook
-- `requirements.txt` — Python dependencies
+Increment dispersion computation
 
-## Reproducibility
+Softmax compatibility weighting
 
-All simulations were run with fixed random seeds.
+Time-series evaluation of normalized out-degree dispersion
 
-To reproduce:
+Log–log regression to estimate scaling exponent α(λ)
 
-1. Install dependencies:
-   pip install -r requirements.txt
+Control experiments (uniform and shuffled penalty)
 
-2. Run the notebook sequentially.
+Outputs include:
 
-## Parameter Defaults
+Φ(t) time series
 
-- m = [your value]
-- T = 5000
-- lambda ∈ [0, 10]
-- Transient cutoff t0 = 500
-- N = 10 runs
+Estimated scaling exponents α(λ)
 
-## Citation
+Standard deviations across realizations
 
-If using this code, please cite:
+Goodness-of-fit (R²)
 
-Kouvidis, G. (2026). Constraint-Weighted Growth as a Mechanism for Tunable Scaling Regimes in Directed Networks.
+This notebook reproduces the exponent table reported in the paper.
 
-Zenodo DOI: [to be inserted]
+2. Transport Surrogate and Dynamical Embedding
 
-## License
+Notebook: 02_transport_surrogate.ipynb
 
-MIT License.
+This notebook implements the coarse-grained transport proxy and illustrative dynamical embedding described in Sections 4–5.
+
+It includes:
+
+Conditional increment distribution under exponential penalty
+
+Computation of effective transport proxy χ_eff(λ, g)
+
+Gradient elasticity evaluation
+
+Cutoff activation analysis
+
+Illustrative nonlinear diffusion surrogate with regulator dynamics
+
+This notebook demonstrates the structural suppression mechanism induced by exponential tail truncation.
+
+Reproducibility
+
+All simulations are deterministic given the random seed.
+
+To reproduce results:
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+Run notebooks sequentially from top to bottom.
+
+Each discrete growth step corresponds to one unit time increment in the coarse-grained description.
+
+Code Versions and Archival
+
+Each notebook corresponds to an archived Zenodo release:
+
+Growth scaling implementation → DOI: (to be assigned)
+
+Transport surrogate implementation → DOI: (to be assigned)
+
+The GitHub repository reflects the development version; Zenodo releases provide frozen, citable snapshots used in the manuscript.
+
+License
+
+This project is released under the MIT License (or specify your license here).
+
+Citation
+
+If you use this code, please cite:
+
+Kouvidis, G. (2026).
+Constraint-Weighted Growth Induces Monotone Scaling Modulation and Nonlinear Transport Suppression.
+
+and the corresponding Zenodo code release.
+
+Notes
+
+This repository implements a structural stochastic growth mechanism.
+It does not model specific physical transport systems; the transport surrogate is illustrative and structural in nature.
